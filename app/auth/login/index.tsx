@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
+import { View, Text, KeyboardAvoidingView, ScrollView, TextInput, Button, StyleSheet, Alert, useWindowDimensions } from 'react-native';
 import axios from 'axios';
 import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage'; // Para guardar el estado del usuario
+import { useThemeColor } from '@/hooks/useThemeColor';
+import { ThemedText } from '@/components/ThemedText';
+import ThemedTextInput from '@/components/ThemedTextInput';
+import ThemedButton from '@/components/ThemedButton';
+import ThemedLink from '@/components/ThemedLink';
 
 const LoginScreen = () => {
     const [login, setLogin] = useState('');
+    const { height } = useWindowDimensions();
+    const backgroundColor = useThemeColor({}, 'background')
     const [password, setPassword] = useState('');
     const router = useRouter();
 
@@ -41,26 +48,91 @@ const LoginScreen = () => {
     };
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Ingresar</Text>
-            <TextInput
-                style={styles.input}
-                placeholder="Correo o usuario"
-                value={login}
-                onChangeText={setLogin}
-            />
-            <TextInput
-                style={styles.input}
-                placeholder="Contraseña"
-                secureTextEntry
-                value={password}
-                onChangeText={setPassword}
-            />
-            <Button title="Ingresar" onPress={handleLogin} />
-            <Text style={styles.link} onPress={() => router.push('/auth/register')}>
-                ¿No tienes cuenta? Crear cuenta
-            </Text>
-        </View>
+        <KeyboardAvoidingView
+            behavior="padding"
+            style={{ flex: 1 }}
+        >
+            <ScrollView
+                style={{
+                    paddingHorizontal: 35,
+                    backgroundColor: backgroundColor,
+                }}
+            >
+                <View
+                    style={{
+                        paddingTop: height * 0.30,
+                    }}
+                >
+                    <ThemedText type='title'>Ingresar</ThemedText>
+                    <ThemedText style={{ color: 'gray' }}>Por favor ingrese para continuar</ThemedText>
+                </View>
+                {/* Email y Password */}
+                <View style={{ marginTop: 20 }}>
+                    <ThemedTextInput
+                        placeholder="Correo electrónico"
+                        keyboardType="email-address"
+                        autoCapitalize="none"
+                        icon="mail-outline"
+                        value={login}
+                        onChangeText={setLogin}
+                    />
+                    <ThemedTextInput
+                        placeholder="Contraseña"
+                        secureTextEntry
+                        autoCapitalize="none"
+                        icon="lock-closed-outline"
+                        value={password}
+                        onChangeText={setPassword}
+                    />
+                </View>
+                {/* Spacer */}
+                <View style={{ marginTop: 10 }} />
+                {/* <View style={styles.container}> */}
+                {/* <Text style={styles.title}>Ingresar</Text> */}
+                {/* <TextInput
+                        style={styles.input}
+                        placeholder="Correo o usuario"
+                        value={login}
+                        onChangeText={setLogin}
+                    />
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Contraseña"
+                        secureTextEntry
+                        value={password}
+                        onChangeText={setPassword}
+                    /> */}
+                {/* <Button title="Ingresar" onPress={handleLogin} /> */}
+                {/* <Text style={styles.link} onPress={() => router.push('/auth/register')}>
+                        ¿No tienes cuenta? Crear cuenta
+                    </Text> */}
+                {/* </View> */}
+                {/* Botón */}
+                <ThemedButton
+                    icon="arrow-forward-outline"
+                    onPress={handleLogin}
+                // disabled={isPosting}
+                >
+                    Ingresar
+                </ThemedButton>
+                {/* Spacer */}
+                <View style={{ marginTop: 50 }} />
+                {/* Enlace a registro */}
+                <View
+                    style={{
+                        flexDirection: 'row',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
+                >
+                    <ThemedText>¿No tienes cuenta?</ThemedText>
+                    <ThemedLink href="/auth/register" style={{ marginHorizontal: 5 }}>
+                        Crear cuenta
+                    </ThemedLink>
+                </View>
+
+            </ScrollView>
+        </KeyboardAvoidingView>
     );
 };
 
