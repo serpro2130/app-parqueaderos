@@ -50,6 +50,12 @@ const CheckAuthenticationLayout = () => {
                     title: 'Parqueaderos',
                 }}
             />
+            {/* <Stack.Screen
+                name='noticias/index'
+                options={{
+                    title: 'Noticias',
+                }}
+            /> */}
         </Stack>
     );
 };

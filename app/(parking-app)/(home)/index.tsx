@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Button, Alert, StyleSheet } from 'react-native';
-import { useRouter } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const HomeScreen = () => {
@@ -19,6 +19,7 @@ const HomeScreen = () => {
 
     return (
         <View style={styles.container}>
+            <Link style={styles.espace} href='/noticias'>Noticias</Link>
             <Button title="Cerrar sesión" onPress={handleLogout} />
         </View>
     );
@@ -30,6 +31,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    espace: {
+        marginBottom: 50
+    }
 });
 
 export default HomeScreen;
