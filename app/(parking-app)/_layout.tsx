@@ -2,11 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { View, ActivityIndicator } from 'react-native';
 import { Redirect, Stack } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage'; // Para guardar el estado de autenticación
-
 const CheckAuthenticationLayout = () => {
     const [isLoading, setIsLoading] = useState(true); // Cargando estado inicial
     const [isAuthenticated, setIsAuthenticated] = useState(false); // Estado de autenticación
-
     useEffect(() => {
         const checkLogin = async () => {
             try {
@@ -24,10 +22,8 @@ const CheckAuthenticationLayout = () => {
                 setIsLoading(false); // Finaliza el estado de carga
             }
         };
-
         checkLogin();
     }, []);
-
     if (isLoading) {
         // Muestra indicador de carga mientras verificamos el estado
         return (
@@ -36,12 +32,10 @@ const CheckAuthenticationLayout = () => {
             </View>
         );
     }
-
     if (!isAuthenticated) {
         // Redirige a la pantalla de login si no está autenticado
         return <Redirect href="/auth/login" />;
     }
-
     return (
         <Stack>
             <Stack.Screen
@@ -59,5 +53,4 @@ const CheckAuthenticationLayout = () => {
         </Stack>
     );
 };
-
 export default CheckAuthenticationLayout;
