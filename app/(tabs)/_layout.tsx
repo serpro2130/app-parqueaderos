@@ -7,7 +7,7 @@ const TabsLayout = () => {
     return (
         <Tabs screenOptions={{
             tabBarActiveTintColor: 'green',
-            //headerShown: false,
+            headerShown: false,
             // tabBarStyle: {
             //     backgroundColor: 'black',
             // },
@@ -17,7 +17,7 @@ const TabsLayout = () => {
                 name="(stack)"
                 options={{
                     title: 'Menú',
-                    headerShown: false,
+                    // headerShown: false,
                     tabBarIcon: ({ color }) => <Ionicons size={28} name="menu-outline" color={color} />,
                 }}
             />

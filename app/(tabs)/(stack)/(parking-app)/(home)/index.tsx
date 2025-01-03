@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Button, Alert, StyleSheet, SafeAreaView } from 'react-native';
+import { View, Button, Alert, StyleSheet, SafeAreaView, Image } from 'react-native';
 import { Link, useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import CustomButton from '@/components/shared/CustomButton';
@@ -18,11 +18,11 @@ const HomeScreen = () => {
     return (
         <SafeAreaView>
             <View style={styles.container1}>
-                {/* <Link style={styles.text} href='/noticias'>Noticias</Link>
-                <Link style={styles.text} href='/tarifas'>Tarifas</Link>
-                <Link style={styles.text} href='/multas'>Multas</Link>
-                <Link style={styles.text} href='/vigencia'>Vigencia</Link>
-                <Link style={styles.text} href='/parqueaderos'>Parqueaderos</Link> */}
+                {/* logo */}
+                <Image
+                    source={require('../../../../../assets/logo.png')} // Asegúrate de colocar el logo en la carpeta assets
+                    style={styles.logo}
+                />
                 <CustomButton
                     color="primary"
                     variant="contained"
@@ -59,14 +59,13 @@ const HomeScreen = () => {
                     Multas
                 </CustomButton>
                 <Button title="Cerrar sesión" onPress={handleLogout} />
-
             </View>
         </SafeAreaView>
     );
 };
 const styles = StyleSheet.create({
     container1: {
-        paddingHorizontal: 40,
+        paddingHorizontal: 30,
     },
     container: {
         flex: 1,
@@ -78,6 +77,11 @@ const styles = StyleSheet.create({
     },
     text: {
         marginBottom: 20, // mb-5 en Tailwind → 5 unidades * 4 píxeles = 20px
+    },
+    logo: {
+        width: 300, // Ajustar el tamaño según sea necesario
+        height: 120, // Ajustar el tamaño según sea necesario
+        marginBottom: 20, // Espaciado entre el logo y el botón
     },
 });
 export default HomeScreen;

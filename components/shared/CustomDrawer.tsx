@@ -2,7 +2,6 @@ import { View, Text } from 'react-native';
 import React from 'react';
 import { DrawerContentScrollView, DrawerItemList, DrawerContentComponentProps } from '@react-navigation/drawer';
 import { StyleSheet } from 'react-native';
-
 const CustomDrawer = (props: DrawerContentComponentProps) => {
     return (
         <DrawerContentScrollView {...props} scrollEnabled={false}>
@@ -18,7 +17,6 @@ const CustomDrawer = (props: DrawerContentComponentProps) => {
         </DrawerContentScrollView>
     );
 };
-
 const styles = StyleSheet.create({
     headerContainer: {
         flex: 1,
