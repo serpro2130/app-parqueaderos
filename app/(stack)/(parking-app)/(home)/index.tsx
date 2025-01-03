@@ -23,7 +23,6 @@ const HomeScreen = () => {
                 <Link style={styles.text} href='/multas'>Multas</Link>
                 <Link style={styles.text} href='/vigencia'>Vigencia</Link>
                 <Link style={styles.text} href='/parqueaderos'>Parqueaderos</Link> */}
-                <Button title="Cerrar sesión" onPress={handleLogout} />
                 <CustomButton
                     color="primary"
                     variant="contained"
@@ -39,13 +38,6 @@ const HomeScreen = () => {
                     Tarifas
                 </CustomButton>
                 <CustomButton
-                    color="tertiary"
-                    variant="contained"
-                    onPress={() => router.push('/multas')}
-                >
-                    Multas
-                </CustomButton>
-                <CustomButton
                     color="primary"
                     variant="contained"
                     onPress={() => router.push('/vigencia')}
@@ -59,6 +51,14 @@ const HomeScreen = () => {
                 >
                     Parqueaderos
                 </CustomButton>
+                <CustomButton
+                    color="tertiary"
+                    variant="contained"
+                    onPress={() => router.push('/multas')}
+                >
+                    Multas
+                </CustomButton>
+                <Button title="Cerrar sesión" onPress={handleLogout} />
 
             </View>
         </SafeAreaView>
