@@ -16,23 +16,23 @@ const TabsLayout = () => {
             <Tabs.Screen
                 name="(stack)"
                 options={{
-                    title: 'Stack',
+                    title: 'Menú',
                     headerShown: false,
-                    tabBarIcon: ({ color }) => <Ionicons size={28} name="person-add-outline" color={color} />,
+                    tabBarIcon: ({ color }) => <Ionicons size={28} name="menu-outline" color={color} />,
                 }}
             />
             <Tabs.Screen
                 name="noticias/index"
                 options={{
                     title: 'Noticias',
-                    tabBarIcon: ({ color }) => <Ionicons size={28} name="home-outline" color={color} />,
+                    tabBarIcon: ({ color }) => <Ionicons size={28} name="newspaper-outline" color={color} />,
                 }}
             />
             <Tabs.Screen
                 name="parqueaderos/index"
                 options={{
                     title: 'Parqueaderos',
-                    tabBarIcon: ({ color }) => <Ionicons size={28} name="star-outline" color={color} />,
+                    tabBarIcon: ({ color }) => <Ionicons size={28} name="car-sport-outline" color={color} />,
                 }}
             />
         </Tabs>
