@@ -23,15 +23,15 @@ const HomeScreen = () => {
                     source={require('../../../../../assets/logo.png')} // Asegúrate de colocar el logo en la carpeta assets
                     style={styles.logo}
                 />
-                <CustomButton
+                {/* <CustomButton
                     color="primary"
                     variant="contained"
                     onPress={() => router.push('/noticias')}
                 >
                     Noticias
-                </CustomButton>
+                </CustomButton> */}
                 <CustomButton
-                    color="secondary"
+                    color="primary"
                     variant="contained"
                     onPress={() => router.push('/tarifas')}
                 >
@@ -44,21 +44,28 @@ const HomeScreen = () => {
                 >
                     Vigencia
                 </CustomButton>
-                <CustomButton
+                {/* <CustomButton
                     color="secondary"
                     variant="contained"
                     onPress={() => router.push('/parqueaderos')}
                 >
                     Parqueaderos
-                </CustomButton>
+                </CustomButton> */}
                 <CustomButton
-                    color="tertiary"
+                    color="primary"
                     variant="contained"
                     onPress={() => router.push('/multas')}
                 >
                     Multas
                 </CustomButton>
-                <Button title="Cerrar sesión" onPress={handleLogout} />
+                <CustomButton
+                    color="primary"
+                    variant="contained"
+                    onPress={handleLogout}
+                >
+                    Cerrar sesión
+                </CustomButton>
+                {/* <Button title="Cerrar sesión" onPress={handleLogout} /> */}
             </View>
         </SafeAreaView>
     );

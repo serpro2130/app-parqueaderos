@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     primaryBackground: {
-        backgroundColor: '#007bff',
+        backgroundColor: '#002e55',
     },
     secondaryBackground: {
         backgroundColor: '#6c757d',
