@@ -184,6 +184,7 @@ const styles = StyleSheet.create({
     },
     listContainer: {
         paddingVertical: 20, // Espaciado desde arriba y abajo
+        paddingTop: 40, // Incrementa el espacio superior
     },
     imageContainer: {
         marginBottom: 20, // Espaciado entre imágenes
