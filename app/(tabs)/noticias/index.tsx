@@ -107,5 +107,4 @@ const styles = StyleSheet.create({
     borderRadius: 10, // Esquinas redondeadas
   },
 });
-
 export default NoticiasScreen;
