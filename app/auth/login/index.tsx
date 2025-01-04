@@ -37,6 +37,13 @@ const LoginScreen = () => {
             if (response.data.correcto === 'SI') {
                 Alert.alert('¡Bienvenido!', `Hola, ${response.data.nombreusuario}`);
                 await AsyncStorage.setItem('loggedIn', 'true'); // Guardar estado de login en AsyncStorage
+                await AsyncStorage.setItem('username', response.data.nombreusuario); // Guarda el nombre
+                console.log('Multas obtenidas:', response.data.contratos[0]?.multas);
+                await AsyncStorage.setItem('multas', JSON.stringify(response.data.contratos[0]?.multas || [])); // Multas
+                await AsyncStorage.setItem('vigencia', JSON.stringify(response.data.contratos[0] || {})); // Vigencia del plan
+
+                // await AsyncStorage.setItem('userEmail', login); // Guarda el correo
+                // await AsyncStorage.setItem('userPassword', password); // Guarda la contraseña
                 router.push('/(parking-app)/(home)'); // Navegar a la pantalla Home
             } else {
                 Alert.alert('Error', 'Credenciales incorrectas.');

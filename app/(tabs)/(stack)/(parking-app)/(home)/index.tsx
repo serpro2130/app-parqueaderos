@@ -1,10 +1,29 @@
-import React from 'react';
-import { View, Button, Alert, StyleSheet, SafeAreaView, Image } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Button, Alert, StyleSheet, SafeAreaView, Image, Text } from 'react-native';
 import { Link, useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
 import CustomButton from '@/components/shared/CustomButton';
 const HomeScreen = () => {
     const router = useRouter();
+    const [username, setUsername] = useState<string | null>(null);
+
+
+    useEffect(() => {
+        const fetchUsername = async () => {
+            try {
+                const storedUsername = await AsyncStorage.getItem('username');
+                if (storedUsername) {
+                    setUsername(storedUsername);
+                }
+            } catch (error) {
+                console.error('Error al recuperar el nombre del usuario:', error);
+            }
+        };
+
+        fetchUsername();
+    }, []);
+
     const handleLogout = async () => {
         try {
             await AsyncStorage.removeItem('loggedIn'); // Eliminar el estado de login
@@ -18,6 +37,9 @@ const HomeScreen = () => {
     return (
         <SafeAreaView>
             <View style={styles.container1}>
+                {/* Mensaje de bienvenida */}
+                {username && <Text style={styles.welcomeMessage}>Bienvenid@, {username}</Text>}
+
                 {/* logo */}
                 <Image
                     source={require('../../../../../assets/logo.png')} // Asegúrate de colocar el logo en la carpeta assets
@@ -89,6 +111,13 @@ const styles = StyleSheet.create({
         width: 300, // Ajustar el tamaño según sea necesario
         height: 120, // Ajustar el tamaño según sea necesario
         marginBottom: 20, // Espaciado entre el logo y el botón
+    },
+    welcomeMessage: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        marginBottom: 10, // Espacio entre el mensaje y el logo
+        color: '#333', // Ajusta el color según el diseño
     },
 });
 export default HomeScreen;
