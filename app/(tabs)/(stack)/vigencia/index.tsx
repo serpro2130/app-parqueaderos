@@ -224,48 +224,118 @@
 
 // export default VigenciaScreen;
 
+// import React, { useEffect, useState } from 'react';
+// import { View, Text, StyleSheet } from 'react-native';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
+
+// // Define el tipo de vigencia
+// type Vigencia = {
+//     tarjeta: string;
+//     fechacontratacion: string;
+//     modoverificacion: string;
+// };
+
+// const VigenciaScreen = () => {
+//     const [vigencia, setVigencia] = useState<Vigencia | null>(null);
+
+//     useEffect(() => {
+//         const fetchVigencia = async () => {
+//             try {
+//                 const storedVigencia = await AsyncStorage.getItem('vigencia');
+//                 if (storedVigencia) {
+//                     setVigencia(JSON.parse(storedVigencia) as Vigencia);
+//                 }
+//             } catch (error) {
+//                 console.error('Error al recuperar la vigencia:', error);
+//             }
+//         };
+
+//         fetchVigencia();
+//     }, []);
+
+//     return (
+//         <View style={styles.container}>
+//             <Text style={styles.title}>Vigencia</Text>
+//             {vigencia ? (
+//                 <View style={styles.infoContainer}>
+//                     <Text style={styles.message}>Tarjeta: {vigencia.tarjeta}</Text>
+//                     <Text style={styles.message}>
+//                         Fecha de contratación: {vigencia.fechacontratacion}
+//                     </Text>
+//                     <Text style={styles.message}>
+//                         Vigencia hasta: {vigencia.modoverificacion}
+//                     </Text>
+//                 </View>
+//             ) : (
+//                 <Text style={styles.message}>No hay vigencias disponibles.</Text>
+//             )}
+//         </View>
+//     );
+// };
+
+// const styles = StyleSheet.create({
+//     container: {
+//         flex: 1,
+//         padding: 20,
+//     },
+//     title: {
+//         fontSize: 24,
+//         fontWeight: 'bold',
+//         marginBottom: 20,
+//     },
+//     infoContainer: {
+//         marginBottom: 15,
+//     },
+//     message: {
+//         fontSize: 16,
+//     },
+// });
+
+// export default VigenciaScreen;
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// Define el tipo de vigencia
-type Vigencia = {
+// Tipo de contrato
+type Contrato = {
     tarjeta: string;
     fechacontratacion: string;
     modoverificacion: string;
 };
 
 const VigenciaScreen = () => {
-    const [vigencia, setVigencia] = useState<Vigencia | null>(null);
+    const [contratos, setContratos] = useState<Contrato[]>([]);
 
     useEffect(() => {
-        const fetchVigencia = async () => {
+        const fetchContratos = async () => {
             try {
-                const storedVigencia = await AsyncStorage.getItem('vigencia');
-                if (storedVigencia) {
-                    setVigencia(JSON.parse(storedVigencia) as Vigencia);
+                const storedContratos = await AsyncStorage.getItem('contratos');
+                if (storedContratos) {
+                    setContratos(JSON.parse(storedContratos) as Contrato[]);
                 }
             } catch (error) {
-                console.error('Error al recuperar la vigencia:', error);
+                console.error('Error al recuperar los contratos:', error);
             }
         };
 
-        fetchVigencia();
+        fetchContratos();
     }, []);
 
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Vigencia</Text>
-            {vigencia ? (
-                <View style={styles.infoContainer}>
-                    <Text style={styles.message}>Tarjeta: {vigencia.tarjeta}</Text>
-                    <Text style={styles.message}>
-                        Fecha de contratación: {vigencia.fechacontratacion}
-                    </Text>
-                    <Text style={styles.message}>
-                        Vigencia hasta: {vigencia.modoverificacion}
-                    </Text>
-                </View>
+            {contratos.length > 0 ? (
+                contratos.map((contrato, index) => (
+                    <View key={index} style={styles.infoContainer}>
+                        <Text style={styles.message}>Tarjeta: {contrato.tarjeta}</Text>
+                        <Text style={styles.message}>
+                            Fecha de contratación: {contrato.fechacontratacion}
+                        </Text>
+                        <Text style={styles.message}>
+                            Vigencia hasta: {contrato.modoverificacion}
+                        </Text>
+                    </View>
+                ))
             ) : (
                 <Text style={styles.message}>No hay vigencias disponibles.</Text>
             )}
@@ -285,6 +355,10 @@ const styles = StyleSheet.create({
     },
     infoContainer: {
         marginBottom: 15,
+        padding: 10,
+        borderWidth: 1,
+        borderColor: '#ccc',
+        borderRadius: 8,
     },
     message: {
         fontSize: 16,

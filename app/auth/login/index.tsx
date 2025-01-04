@@ -40,8 +40,18 @@ const LoginScreen = () => {
                 await AsyncStorage.setItem('username', response.data.nombreusuario); // Guarda el nombre
                 console.log('Multas obtenidas:', response.data.contratos[0]?.multas);
                 await AsyncStorage.setItem('multas', JSON.stringify(response.data.contratos[0]?.multas || [])); // Multas
-                await AsyncStorage.setItem('vigencia', JSON.stringify(response.data.contratos[0] || {})); // Vigencia del plan
+                // await AsyncStorage.setItem('vigencia', JSON.stringify(response.data.contratos[0] || {})); // Vigencia del plan
+                // Guarda todas las multas
+                //  await AsyncStorage.setItem(
+                //     'multas',
+                //     JSON.stringify(response.data.contratos.map((c) => c.multas).flat() || [])
+                //   );
 
+                // Guarda todos los contratos
+                await AsyncStorage.setItem(
+                    'contratos',
+                    JSON.stringify(response.data.contratos || [])
+                );
                 // await AsyncStorage.setItem('userEmail', login); // Guarda el correo
                 // await AsyncStorage.setItem('userPassword', password); // Guarda la contraseña
                 router.push('/(parking-app)/(home)'); // Navegar a la pantalla Home
