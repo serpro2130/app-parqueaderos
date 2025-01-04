@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Button, StyleSheet, Alert, Linking } from 'react-native';
 import axios from 'axios';
+import CustomButton from '@/components/shared/CustomButton';
 
 const TarifasScreen = () => {
     const [tarifarioUrl, setTarifarioUrl] = useState<string | null>(null);
@@ -45,7 +46,14 @@ const TarifasScreen = () => {
         <View style={styles.container}>
             <Text style={styles.title}>Tarifario</Text>
             {tarifarioUrl ? (
-                <Button title="Descargar Tarifario" onPress={handleDownload} />
+                // <Button title="Descargar Tarifario" onPress={handleDownload} />
+                <CustomButton
+                    color="primary"
+                    variant="contained"
+                    onPress={handleDownload}
+                >
+                    Descargar Tarifario
+                </CustomButton>
             ) : (
                 <Text style={styles.message}>No hay tarifario disponible.</Text>
             )}
