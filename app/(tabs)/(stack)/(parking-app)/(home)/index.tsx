@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { View, Button, Alert, StyleSheet, SafeAreaView, Image, Text } from 'react-native';
-import { Link, useRouter } from 'expo-router';
+import { View, Alert, StyleSheet, SafeAreaView, Image, Text } from 'react-native';
+import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import CustomButton from '@/components/shared/CustomButton';
