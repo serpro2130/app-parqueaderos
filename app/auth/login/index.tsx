@@ -39,8 +39,9 @@ const LoginScreen = () => {
                 await AsyncStorage.setItem('loggedIn', 'true'); // Guardar estado de login en AsyncStorage
                 await AsyncStorage.setItem('username', response.data.nombreusuario); // Guarda el nombre
                 console.log('Multas obtenidas:', response.data.contratos[0]?.multas);
-                await AsyncStorage.setItem('multas', JSON.stringify(response.data.contratos[0]?.multas || [])); // Multas
-                // await AsyncStorage.setItem('vigencia', JSON.stringify(response.data.contratos[0] || {})); // Vigencia del plan
+                await AsyncStorage.setItem('multas1', JSON.stringify(response.data.contratos[0]?.multas || []));
+                await AsyncStorage.setItem('multas2', JSON.stringify(response.data.contratos[1]?.multas || [])); // Multas
+                await AsyncStorage.setItem('multas3', JSON.stringify(response.data.contratos[2]?.multas || []));// await AsyncStorage.setItem('vigencia', JSON.stringify(response.data.contratos[0] || {})); // Vigencia del plan
                 // Guarda todas las multas
                 //  await AsyncStorage.setItem(
                 //     'multas',
