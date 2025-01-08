@@ -148,6 +148,13 @@ const LoginScreen = () => {
                         Crear cuenta
                     </ThemedLink>
                 </View>
+                <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 10 }}>
+                    <ThemedText>¿Olvidaste tu contraseña?</ThemedText>
+                    <ThemedLink href="/auth/change" style={{ marginHorizontal: 5 }}>
+                        Cambiar contraseña
+                    </ThemedLink>
+                </View>
+
 
             </ScrollView>
         </KeyboardAvoidingView>
