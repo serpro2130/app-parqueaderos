@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { KeyboardAvoidingView, ScrollView, View, Text, TextInput, Button, Alert, StyleSheet, useWindowDimensions } from 'react-native';
 import axios from 'axios';
-import { useNavigation } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { ThemedText } from '@/components/ThemedText';
 import ThemedLink from '@/components/ThemedLink';
 import { useThemeColor } from '@/hooks/useThemeColor';
@@ -12,7 +12,7 @@ const ChangePasswordScreen = () => {
     const [email, setEmail] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const navigation = useNavigation();
+    const navigation = useRouter();
     const { height } = useWindowDimensions();
     const backgroundColor = useThemeColor({}, 'background')
 
@@ -28,14 +28,17 @@ const ChangePasswordScreen = () => {
         }
 
         try {
-            const response = await axios.post('https://tu-endpoint.com/change-password', {
-                email,
-                password: newPassword,
+            const response = await axios.post(
+                `${process.env.EXPO_PUBLIC_API_URL}/postCambiarClave.php`,
+                {
+                    login: email,
+                    newpassword: newPassword,
+                }, {
+                headers: { Authorization: 'bG9naW4vcGFzc3dvcmQ=' },
             });
-
             if (response.status === 200) {
                 Alert.alert('Éxito', 'Contraseña actualizada correctamente');
-                navigation.navigate('/auth/login'); // Redirigir al login
+                navigation.push('/auth/login'); // Redirigir al login
             } else {
                 Alert.alert('Error', 'No se pudo actualizar la contraseña. Inténtelo más tarde.');
             }
@@ -61,10 +64,8 @@ const ChangePasswordScreen = () => {
                         paddingTop: height * 0.26,
                     }}
                 >
-                    {/* <View style={styles.container}> */}
                     <ThemedText style={styles.title}>Cambiar Contraseña</ThemedText>
                     <ThemedTextInput
-                        // style={styles.input}
                         placeholder="Correo electrónico"
                         keyboardType="email-address"
                         autoCapitalize="none"
@@ -73,7 +74,6 @@ const ChangePasswordScreen = () => {
                         onChangeText={setEmail}
                     />
                     <ThemedTextInput
-                        // style={styles.input}
                         placeholder="Nueva contraseña"
                         autoCapitalize="none"
                         icon="lock-closed-outline"
@@ -82,7 +82,6 @@ const ChangePasswordScreen = () => {
                         secureTextEntry
                     />
                     <ThemedTextInput
-                        // style={styles.input}
                         placeholder="Confirmar nueva contraseña"
                         autoCapitalize="none"
                         icon="lock-closed-outline"
@@ -90,17 +89,16 @@ const ChangePasswordScreen = () => {
                         onChangeText={setConfirmPassword}
                         secureTextEntry
                     />
-                    {/* <Button title="Actualizar Contraseña" onPress={handlePasswordChange} /> */}
                     {/* Spacer */}
                     <View style={{ marginTop: 10 }} />
 
                     {/* Botón */}
                     <ThemedButton
                         icon="arrow-forward-outline"
-                    // onPress={handlePasswordChange}
+                        onPress={handlePasswordChange}
                     //   disabled={isPosting}
                     >
-                        Actualizar contraseña
+                        Cambiar contraseña
                     </ThemedButton>
                     {/* Spacer */}
                     <View style={{ marginTop: 50 }} />
@@ -117,7 +115,6 @@ const ChangePasswordScreen = () => {
                             Ingresar
                         </ThemedLink>
                     </View>
-                    {/* </View> */}
                 </View>
             </ScrollView>
         </KeyboardAvoidingView>
