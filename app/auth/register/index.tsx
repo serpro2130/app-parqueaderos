@@ -12,7 +12,7 @@ const RegisterScreen = () => {
     const [nombreusuario, setNombreusuario] = useState('');
     const [usuario, setUsuario] = useState('');
     const [clave, setClave] = useState('');
-    const [celular, setCelular] = useState('');
+    const [cedula, setCedula] = useState('');
     const router = useRouter();
 
     const { height } = useWindowDimensions();
@@ -24,7 +24,7 @@ const RegisterScreen = () => {
                 nombreusuario,
                 usuario,
                 clave,
-                celular,
+                cedula,
             }, {
                 headers: { Authorization: 'bG9naW4vcGFzc3dvcmQ=' },
             });
@@ -76,12 +76,12 @@ const RegisterScreen = () => {
                         onChangeText={setUsuario}
                     />
                     <ThemedTextInput
-                        placeholder="Celular"
+                        placeholder="Cédula"
                         keyboardType="phone-pad"
                         autoCapitalize="none"
-                        icon="phone-portrait-outline"
-                        value={celular}
-                        onChangeText={setCelular}
+                        icon="id-card-outline"
+                        value={cedula}
+                        onChangeText={setCedula}
                     />
                     <ThemedTextInput
                         placeholder="Contraseña"
