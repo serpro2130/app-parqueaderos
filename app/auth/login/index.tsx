@@ -57,7 +57,8 @@ const LoginScreen = () => {
                 // await AsyncStorage.setItem('userPassword', password); // Guarda la contraseña
                 router.push('/(parking-app)/(home)'); // Navegar a la pantalla Home
             } else {
-                Alert.alert('Error', 'Credenciales incorrectas.');
+                Alert.alert('Error', response.data.mensaje);
+                // Alert.alert('Error', 'Credenciales incorrectas.');
             }
         } catch (error) {
             Alert.alert('Error', 'No se pudo conectar con el servidor.');

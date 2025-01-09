@@ -36,11 +36,12 @@ const ChangePasswordScreen = () => {
                 }, {
                 headers: { Authorization: 'bG9naW4vcGFzc3dvcmQ=' },
             });
-            if (response.status === 200) {
-                Alert.alert('Éxito', 'Contraseña actualizada correctamente');
+            if (response.data.correcto === 'SI') {
+                Alert.alert('Éxito', response.data.mensaje);
                 navigation.push('/auth/login'); // Redirigir al login
             } else {
-                Alert.alert('Error', 'No se pudo actualizar la contraseña. Inténtelo más tarde.');
+                Alert.alert('Error', response.data.mensaje);
+                // Alert.alert('Error', 'No se pudo cambiar la contraseña. Correo incorrecto.');
             }
         } catch (error) {
             Alert.alert('Error', 'Ocurrió un problema. Inténtelo más tarde.');

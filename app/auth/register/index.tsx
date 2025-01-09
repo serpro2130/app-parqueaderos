@@ -32,7 +32,7 @@ const RegisterScreen = () => {
                 Alert.alert('¡Éxito!', response.data.mensaje);
                 router.push('/auth/login'); // Navega a la pantalla de login
             } else {
-                Alert.alert('Error', 'No se pudo crear la cuenta.');
+                Alert.alert('Error', response.data.mensaje);
             }
         } catch (error) {
             Alert.alert('Error', 'No se pudo conectar con el servidor.');
