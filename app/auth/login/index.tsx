@@ -38,16 +38,20 @@ const LoginScreen = () => {
                 Alert.alert('¡Bienvenido!', `Hola, ${response.data.nombreusuario}`);
                 await AsyncStorage.setItem('loggedIn', 'true'); // Guardar estado de login en AsyncStorage
                 await AsyncStorage.setItem('username', response.data.nombreusuario); // Guarda el nombre
-                console.log('Multas obtenidas:', response.data.contratos[0]?.multas);
-                await AsyncStorage.setItem('multas1', JSON.stringify(response.data.contratos[0]?.multas || []));
-                await AsyncStorage.setItem('multas2', JSON.stringify(response.data.contratos[1]?.multas || [])); // Multas
-                await AsyncStorage.setItem('multas3', JSON.stringify(response.data.contratos[2]?.multas || []));// await AsyncStorage.setItem('vigencia', JSON.stringify(response.data.contratos[0] || {})); // Vigencia del plan
+                console.log('Multas obtenidas:', response.data.multas);
+                // await AsyncStorage.setItem('multas1', JSON.stringify(response.data.contratos[0]?.multas || []));
+                // await AsyncStorage.setItem('multas2', JSON.stringify(response.data.contratos[1]?.multas || [])); // Multas
+                // await AsyncStorage.setItem('multas3', JSON.stringify(response.data.contratos[2]?.multas || []));// await AsyncStorage.setItem('vigencia', JSON.stringify(response.data.contratos[0] || {})); // Vigencia del plan
                 // Guarda todas las multas
                 //  await AsyncStorage.setItem(
                 //     'multas',
                 //     JSON.stringify(response.data.contratos.map((c) => c.multas).flat() || [])
                 //   );
-
+                //Guarda todas las multas
+                await AsyncStorage.setItem(
+                    'multas',
+                    JSON.stringify(response.data.multas || [])
+                );
                 // Guarda todos los contratos
                 await AsyncStorage.setItem(
                     'contratos',
@@ -144,10 +148,10 @@ const LoginScreen = () => {
                         alignItems: 'center',
                     }}
                 >
-                    <ThemedText>¿No tienes cuenta?</ThemedText>
+                    {/* <ThemedText>¿No tienes cuenta?</ThemedText>
                     <ThemedLink href="/auth/register" style={{ marginHorizontal: 5 }}>
                         Crear cuenta
-                    </ThemedLink>
+                    </ThemedLink> */}
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 10 }}>
                     <ThemedText>¿Olvidaste tu contraseña?</ThemedText>
