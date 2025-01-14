@@ -7,9 +7,10 @@ const TarifasScreen = () => {
     const [tarifarioUrl, setTarifarioUrl] = useState<string | null>(null);
 
     // Función para obtener el tarifario
+
     const fetchTarifario = async () => {
         try {
-            const response = await axios.get('https://parking.gestorservicios.store/api/getTarifario.php', {
+            const response = await axios.get(`${process.env.EXPO_PUBLIC_API_URL}/getTarifario.php`, {
                 headers: {
                     Authorization: 'bG9naW4vcGFzc3dvcmQ=',
                 },

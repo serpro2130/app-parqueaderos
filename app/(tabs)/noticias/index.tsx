@@ -13,7 +13,7 @@ const NoticiasScreen = () => {
   useEffect(() => {
     const fetchNoticias = async () => {
       try {
-        const response = await axios.get('https://parking.gestorservicios.store/api/getNoticias.php', {
+        const response = await axios.get(`${process.env.EXPO_PUBLIC_API_URL}/getNoticias.php`, {
           headers: {
             Authorization: 'bG9naW4vcGFzc3dvcmQ=',
           },
